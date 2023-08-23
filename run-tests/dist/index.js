@@ -44011,12 +44011,14 @@ class TestRunner {
     core.info(`Uploading test report to artifacts for build id: ${content.id}`);
     const { devices, id: buildId, framework } = content;
     const rootDir = './reports';
+    const username = process.env[ENV_VARS.BROWSERSTACK_USERNAME].replace("-GitHubAction", ""); // remove suffix as api endpoint doesn't accept it
+    const accesskey = process.env[ENV_VARS.BROWSERSTACK_ACCESS_KEY];
     for (const device of devices) {
       const { sessions } = device;
       for (const session of sessions) {
         const { id } = session;
         const options = {
-          url: `https://${this.username}:${this.accesskey}@${URLS.BASE_URL}/${URLS.WATCH_FRAMEWORKS[framework]}/${buildId}/sessions/${id}/${URLS.REPORT[framework]}`,
+          url: `https://${username}:${accesskey}@${URLS.BASE_URL}/${URLS.WATCH_FRAMEWORKS[framework]}/${buildId}/sessions/${id}/${URLS.REPORT[framework]}`,
         };
         core.info("url: " + options.url)
         /* eslint-disable no-eval */
