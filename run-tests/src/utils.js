@@ -185,6 +185,7 @@ class TestRunner {
         const options = {
           url: `https://${this.username}:${this.accesskey}@${URLS.BASE_URL}/${URLS.WATCH_FRAMEWORKS[framework]}/${buildId}/sessions/${id}/${URLS.REPORT[framework]}`,
         };
+        core.info("url: " + options.url)
         /* eslint-disable no-eval */
         promises.push(new Promise((resolve, reject) => {
           request.get(options, (error, response) => {
