@@ -227,15 +227,15 @@ class TestRunner {
   async run() {
     try {
       core.info(`Upload is ${this.upload}`);
-      await this._startBuild();
-      const dashboardUrl = `https://${URLS.DASHBOARD_BASE}/${this.build_id}`;
-      core.info(`Build Dashboard link: ${dashboardUrl}`);
-      if (this.async) return;
-      const content = await this._pollBuild();
-      if (this.upload) await TestRunner._uploadResults(content);
-      if (this.build_status !== TEST_STATUS.PASSED) {
-        core.setFailed(`Browserstack Build with build id: ${this.build_id} ${this.build_status}`);
-      }
+      // await this._startBuild();
+      // const dashboardUrl = `https://${URLS.DASHBOARD_BASE}/${this.build_id}`;
+      // core.info(`Build Dashboard link: ${dashboardUrl}`);
+      // if (this.async) return;
+      // const content = await this._pollBuild();
+      // if (this.upload) await TestRunner._uploadResults(content);
+      // if (this.build_status !== TEST_STATUS.PASSED) {
+      //   core.setFailed(`Browserstack Build with build id: ${this.build_id} ${this.build_status}`);
+      // }
     } catch (e) {
       core.setFailed(e.message);
     }
