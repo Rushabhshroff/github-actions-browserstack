@@ -231,6 +231,7 @@ class TestRunner {
       core.info(`Build Dashboard link: ${dashboardUrl}`);
       if (this.async) return;
       const content = await this._pollBuild();
+      core.info(`Upload is ${this.upload}`)
       if (this.upload) await TestRunner._uploadResults(content);
       if (this.build_status !== TEST_STATUS.PASSED) {
         core.setFailed(`Browserstack Build with build id: ${this.build_id} ${this.build_status}`);
